@@ -28,9 +28,9 @@ syntax match rajaOp "\v\!\="
 syntax match rajaOp "\v\."
 highlight link rajaOp Operator
 
-" match
-syntax keyword rajaMatch match
-highlight link rajaMatch Keyword
+syntax keyword rajaKeyword match
+syntax keyword rajaKeyword alias
+highlight link rajaKeyword Keyword
 
 " functions
 syntax match rajaFunction "\v\=\>"
