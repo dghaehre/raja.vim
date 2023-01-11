@@ -25,12 +25,23 @@ syntax match rajaOp "\v\="
 syntax match rajaOp "\v\>\="
 syntax match rajaOp "\v\<\="
 syntax match rajaOp "\v\!\="
-syntax match rajaOp "\v\."
 highlight link rajaOp Operator
+
+syntax match rajaDelim "\v\:"
+syntax match rajaDelim "\v\,"
+syntax match rajaDelim "\v\."
+highlight link rajaDelim Delimiter
 
 syntax keyword rajaKeyword match
 syntax keyword rajaKeyword alias
 highlight link rajaKeyword Keyword
+
+
+syntax keyword rajaBuiltin __print
+syntax keyword rajaBuiltin __string
+syntax keyword rajaBuiltin __args
+highlight link rajaBuiltin Include
+
 
 " functions
 syntax match rajaFunction "\v\=\>"
@@ -49,16 +60,17 @@ syntax match rajaNumber "\v\d+"
 syntax match rajaNumber "\v\d+\.\d+"
 highlight link rajaNumber Number
 
+syntax match rajaFnIdentifier "\v[A-Za-z_!][A-Za-z0-9_!?]*\ *\=*\ *\(" contains=rajaFnIdentifierName
+syntax match rajaFnIdentifierName "\v[A-Za-z_][A-Za-z0-9_!?]*" contained
+highlight link rajaFnIdentifierName Identifier
+
 " functions
 syntax match rajaFnCall "\v[A-Za-z_!][A-Za-z0-9_!?]*\(" contains=rajaFunctionName
-
-" identifiers
 syntax match rajaFunctionName "\v[A-Za-z_][A-Za-z0-9_!?]*" contained
-highlight link rajaFunctionName Identifier
+highlight link rajaFunctionName Function
 
-" syntax keyword rajaBuiltin string contained
-" syntax keyword rajaBuiltin print contained
-" highlight link rajaBuiltin Keyword
+syntax match rajaTypeName "\v[A-Z][a-z]*"
+highlight link rajaTypeName Type
 
 " strings
 syntax region rajaString start=/\v"/ skip=/\v(\\.|\r|\n)/ end=/\v"/
